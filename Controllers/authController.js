@@ -1,9 +1,22 @@
+const User = require('../Models/User')
+const Role = require('../Models/Role')
+
+
+
 class authController {
     async registration(req, res) {
         try {
+            const { username, password } = req.body
 
+            const candidate = await User.findOne({ username })
+            if(candidate){
+                return res.status(400).json({message:"Username is already created"})
+            }
+
+            const user = new User({username, password})
         } catch (error) {
             console.log(error)
+            res.status(400).json({ message: "Registration error", error: error })
         }
     }
 
@@ -12,6 +25,7 @@ class authController {
 
         } catch (error) {
             console.log(error)
+            res.status(400).json({ message: "Login error", error: error })
         }
     }
 
