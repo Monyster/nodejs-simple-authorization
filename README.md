@@ -1,4 +1,4 @@
-# simple-authorization
+# simple-authorization-nodejs
 
 Server side project for authorization users with roles.
 
